@@ -5,11 +5,10 @@ import {
   type FastifyInstance,
 } from "fastify";
 import { userRouter } from "./routes";
+import { options } from "./constants";
 
 export class App {
-  #server: FastifyInstance = fastify({
-    logger: true,
-  });
+  #server: FastifyInstance = fastify(options);
 
   static #instance: App;
 
