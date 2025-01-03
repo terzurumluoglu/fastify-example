@@ -1,0 +1,27 @@
+{
+  "name": "fastify-example",
+  "version": "1.0.0",
+  "description": "Rest Service Example with Fastify",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "tsc -w & nodemon build/index.js",
+    "build": "rm -rf build/ && npm i && tsc",
+    "start": "npm run build && node build/index.js"
+  },
+  "keywords": [
+    "fastify",
+    "sample",
+    "rest-service",
+    "api"
+  ],
+  "author": "Toprak ERZURUMLUOĞLU <toprakerzurumluoglu@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "nodemon": "^3.1.9",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "fastify": "^5.2.0"
+  }
+}
