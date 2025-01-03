@@ -4,6 +4,7 @@ import {
   FastifyRequest,
   type FastifyInstance,
 } from "fastify";
+import { userRouter } from "./routes";
 
 export class App {
   #server: FastifyInstance = fastify({
@@ -25,12 +26,10 @@ export class App {
   }
 
   initialRoute = () => {
-    this.#server.get(
-      "/",
-      async (request: FastifyRequest, reply: FastifyReply) => {
-        reply.code(200).send({ message: "Hello World from Fastify Api" });
-      }
-    );
+    this.#server.get("/", (_: FastifyRequest, reply: FastifyReply) => {
+      reply.code(200).send({ message: "Hello World from Fastify Api" });
+    });
+    this.#server.register(userRouter, { prefix: "/users" });
   };
 
   #listen = async () => {
@@ -46,3 +45,28 @@ export class App {
     return this.#server;
   }
 }
+
+//Functional
+// export const App = () => {
+//   const server: FastifyInstance = fastify({
+//     logger: true,
+//   });
+//   initialRoute(server);
+//   listen(server);
+//   return server;
+// };
+
+// const initialRoute = (server: FastifyInstance) => {
+//   server.get("/", async (request: FastifyRequest, reply: FastifyReply) => {
+//     reply.code(200).send({ message: "Hello World from Fastify Api" });
+//   });
+// };
+
+// const listen = async (server: FastifyInstance) => {
+//   try {
+//     await server.listen({ port: 3000 });
+//     console.log("Server started successfully");
+//   } catch (err) {
+//     process.exit(1);
+//   }
+// };
