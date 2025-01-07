@@ -1,4 +1,4 @@
-import { FastifyInstance } from "fastify";
+import { type FastifyInstance } from "fastify";
 import fastifyAutoload from "@fastify/autoload";
 import fp from "fastify-plugin";
 import { join } from "path";

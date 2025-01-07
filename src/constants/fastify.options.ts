@@ -1,4 +1,4 @@
-import { FastifyHttp2SecureOptions } from "fastify";
+import { type FastifyHttp2SecureOptions } from "fastify";
 
 const logger = {
   transport: {

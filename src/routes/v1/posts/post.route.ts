@@ -1,4 +1,4 @@
-import { FastifyInstance } from "fastify";
+import { type FastifyInstance } from "fastify";
 import { postController } from "../../../controllers";
 
 const postRouter = async (app: FastifyInstance) => {

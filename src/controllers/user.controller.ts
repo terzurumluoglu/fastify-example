@@ -1,5 +1,5 @@
 import { userService } from "../services";
-import { RequestWithUserId } from "../types";
+import { type RequestWithUserId } from "../types";
 
 const getAllUsers = async () => userService.getAllUsers();
 
