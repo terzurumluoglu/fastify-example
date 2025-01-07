@@ -2,11 +2,11 @@
   "name": "fastify-example",
   "version": "1.0.0",
   "description": "Rest Service Example with Fastify",
-  "main": "index.ts",
+  "main": "app.ts",
   "scripts": {
-    "dev": "tsc -w & nodemon build/index.js",
+    "dev": "nodemon src/app.ts",
     "build": "rm -rf build/ && npm i && tsc",
-    "start": "npm run build && node build/index.js"
+    "start": "npm run build && node build/app.js"
   },
   "keywords": [
     "fastify",
@@ -20,9 +20,13 @@
     "@types/node": "^22.10.5",
     "nodemon": "^3.1.9",
     "pino-pretty": "^13.0.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@fastify/autoload": "^6.0.3",
+    "@fastify/swagger": "^9.4.0",
+    "@fastify/swagger-ui": "^5.2.0",
     "fastify": "^5.2.0"
   }
 }

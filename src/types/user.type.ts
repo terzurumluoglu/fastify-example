@@ -9,13 +9,13 @@ export type User = {
   company: Company;
 };
 
-export type Company = {
+type Company = {
   name: string;
   catchPhrase: string;
   bs: string;
 };
 
-export type Address = {
+type Address = {
   street: string;
   suite: string;
   city: string;
@@ -23,7 +23,7 @@ export type Address = {
   geo: Geo;
 };
 
-export type Geo = {
+type Geo = {
   lat: string;
   lng: string;
 };
