@@ -5,8 +5,8 @@
   "main": "app.ts",
   "scripts": {
     "dev": "nodemon src/app.ts",
-    "build": "rm -rf build/ && npm i && tsc",
-    "start": "npm run build && node build/app.js"
+    "build": "rimraf build && tsc && tsc-alias",
+    "start": "npm run build && node -r tsconfig-paths/register build/app.js"
   },
   "keywords": [
     "fastify",
@@ -21,6 +21,9 @@
     "nodemon": "^3.1.9",
     "pino-pretty": "^13.0.0",
     "ts-node": "^10.9.2",
+    "rimraf": "^6.0.1",
+    "tsconfig-paths": "^4.2.0",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.7.2"
   },
   "dependencies": {
