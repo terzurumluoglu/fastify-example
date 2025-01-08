@@ -1,5 +1,5 @@
 import { type FastifyInstance } from "fastify";
-import { postController, userController } from "../../../controllers";
+import { postController, userController } from "@controllers";
 
 const userRouter = async (app: FastifyInstance) => {
   const { getAllUsers, getUserByUserId } = userController;

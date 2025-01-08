@@ -1,4 +1,4 @@
-import { USERS } from "../mock";
+import { USERS } from "@mock";
 
 const getAllUsers = async () => USERS;
 

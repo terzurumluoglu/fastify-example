@@ -101,8 +101,20 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "baseUrl": "src",
     "paths": {
-      "controllers/*": [
-        "controllers/*"
+      "@constants": [
+        "constants"
+      ],
+      "@controllers": [
+        "controllers"
+      ],
+      "@mock": [
+        "mock"
+      ],
+      "@services": [
+        "services"
+      ],
+      "@types": [
+        "types"
       ],
     }
   },

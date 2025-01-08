@@ -1,5 +1,5 @@
 import { fastify, type FastifyInstance } from "fastify";
-import { options } from "../constants";
+import { options } from "@constants";
 
 export class Server {
   #server: FastifyInstance = fastify(options);
