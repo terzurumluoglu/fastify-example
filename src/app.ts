@@ -2,8 +2,7 @@ import { join } from "path";
 import { Server } from "./server/server";
 import fastifyAutoload from "@fastify/autoload";
 import { type FastifyReply, type FastifyRequest } from "fastify";
-import { HTML } from "@constants";
-// import { createReadStream } from "fs";
+import { createReadStream } from "fs";
 
 const { server } = Server.get();
 
@@ -13,13 +12,16 @@ const register = () => {
 };
 
 const registerPlugin = async () => {
-  server.get("/", (req: FastifyRequest, reply: FastifyReply) => {
-    // try {
-    //   const path = join(__dirname, "index.html");
-    //   const stream = createReadStream(path);
-    //   reply.type("text/html").send(stream);
-    // } catch (error) {}
-    reply.type("text/html").send(HTML);
+  server.get("/", (_: FastifyRequest, reply: FastifyReply) => {
+    try {
+      const path = join(__dirname, "public", "index.html");
+      const stream = createReadStream(path);
+      reply.type("text/html").send(stream);
+    } catch (error) {
+      reply.code(200).send({
+        message: "Fastify Api is Running...",
+      });
+    }
   });
   const dir = join(__dirname, "plugins");
   server.register(fastifyAutoload, {
