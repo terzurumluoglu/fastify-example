@@ -9,7 +9,7 @@ const userRouter = async (app: FastifyInstance) => {
     "/",
     {
       schema: {
-        description: "users end points",
+        description: "Get All Users That Recorded On The Database",
         tags: ["users"],
       },
     },
@@ -19,8 +19,17 @@ const userRouter = async (app: FastifyInstance) => {
     "/:id",
     {
       schema: {
-        description: "users end points",
+        description: "Get Only One User by Unique UserId",
         tags: ["users"],
+        params: {
+          type: "object",
+          properties: {
+            id: {
+              type: "number",
+            },
+          },
+          required: ["id"],
+        },
       },
     },
     getUserByUserId
@@ -29,8 +38,17 @@ const userRouter = async (app: FastifyInstance) => {
     "/:id/posts",
     {
       schema: {
-        description: "users end points",
+        description: "Get All Post Writed by Current User",
         tags: ["users"],
+        params: {
+          type: "object",
+          properties: {
+            id: {
+              type: "number",
+            },
+          },
+          required: ["id"],
+        },
       },
     },
     getPostsByUserId

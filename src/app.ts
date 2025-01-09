@@ -3,12 +3,14 @@ import { Server } from "./server/server";
 import fastifyAutoload from "@fastify/autoload";
 import { type FastifyReply, type FastifyRequest } from "fastify";
 import { createReadStream } from "fs";
+import { errorHandler } from "helpers/error.handler";
 
 const { server } = Server.get();
 
 const register = () => {
   // Add other registers
   registerPlugin();
+  server.setErrorHandler(errorHandler);
 };
 
 const registerPlugin = async () => {

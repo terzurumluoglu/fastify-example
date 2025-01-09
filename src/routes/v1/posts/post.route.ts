@@ -1,14 +1,27 @@
-import { type FastifyInstance } from "fastify";
+import { FastifySchema, type FastifyInstance } from "fastify";
 import { postController } from "@controllers";
 
 const postRouter = async (app: FastifyInstance) => {
   const { getAllPosts, getPostByPostId } = postController;
 
+  const schema: FastifySchema = {
+    params: {
+      type: "object",
+      properties: {
+        id: {
+          type: "number",
+        },
+      },
+      required: ["id"],
+    },
+    response: {},
+  };
+
   app.get(
     "/",
     {
       schema: {
-        description: "posts end points",
+        description: "Get All Posts That Recorded On The Database",
         tags: ["posts"],
       },
     },
@@ -18,8 +31,17 @@ const postRouter = async (app: FastifyInstance) => {
     "/:id",
     {
       schema: {
-        description: "posts end points",
+        description: "Get Only One Post by Unique PostId",
         tags: ["posts"],
+        params: {
+          type: "object",
+          properties: {
+            id: {
+              type: "number",
+            },
+          },
+          required: ["id"],
+        },
       },
     },
     getPostByPostId
