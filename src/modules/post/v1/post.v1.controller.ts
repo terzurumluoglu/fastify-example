@@ -1,4 +1,4 @@
-import { postService } from "@services";
+import { postService } from "./post.v1.service";
 import { type RequestWithUserId } from "@types";
 
 const getAllPosts = async () => postService.getAllPosts();

@@ -1,40 +1,12 @@
 import { type FastifyInstance } from "fastify";
-import { postController, userController } from "@controllers";
+
+import { userController, userSchemaV2 } from "@modules/user/v2";
 
 const userRouter = async (app: FastifyInstance) => {
   const { getAllUsers, getUserByUserId } = userController;
-  const { getPostsByUserId } = postController;
 
-  app.get(
-    "/",
-    {
-      schema: {
-        description: "users end points",
-        tags: ["users"],
-      },
-    },
-    getAllUsers
-  );
-  app.get(
-    "/:id",
-    {
-      schema: {
-        description: "users end points",
-        tags: ["users"],
-      },
-    },
-    getUserByUserId
-  );
-  app.get(
-    "/:id/posts",
-    {
-      schema: {
-        description: "users end points",
-        tags: ["users"],
-      },
-    },
-    getPostsByUserId
-  );
+  app.get("/", userSchemaV2.getAllUsers, getAllUsers);
+  app.get("/:id", userSchemaV2.getUserByUserId, getUserByUserId);
 };
 
 export default userRouter;

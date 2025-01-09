@@ -104,14 +104,17 @@
       "@constants": [
         "constants"
       ],
-      "@controllers": [
-        "controllers"
-      ],
       "@mock": [
         "mock"
       ],
-      "@services": [
-        "services"
+      "@modules/post/v1": [
+        "modules/post/v1",
+      ],
+      "@modules/user/v1": [
+        "modules/user/v1",
+      ],
+      "@modules/user/v2": [
+        "modules/user/v2",
       ],
       "@types": [
         "types"

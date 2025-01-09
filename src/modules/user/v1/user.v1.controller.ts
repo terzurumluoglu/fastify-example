@@ -1,7 +1,6 @@
-import { userService } from "@services";
+import { userService } from "./user.v1.service";
+import { getAllUsers } from "../common/user.common.controller";
 import { type RequestWithUserId } from "@types";
-
-const getAllUsers = async () => userService.getAllUsers();
 
 const getUserByUserId = async (req: RequestWithUserId) => {
   const { id } = req.params;

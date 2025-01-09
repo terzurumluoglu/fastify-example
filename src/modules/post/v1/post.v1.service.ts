@@ -1,4 +1,5 @@
 import { POSTS } from "@mock";
+import { Post } from "@types";
 
 const getAllPosts = async () => POSTS;
 
@@ -7,7 +8,8 @@ const getPostsByUserId = async (userId: number) => {
 };
 
 const getPostByPostId = async (postId: number) => {
-  return POSTS.find((post) => post.id === postId);
+  const result: Post | undefined = POSTS.find((post) => post.id === postId);
+  return result;
 };
 
 export const postService = {

@@ -1,29 +1,11 @@
 import { type FastifyInstance } from "fastify";
-import { postController } from "@controllers";
+import { postController, schemaPostV1 } from "@modules/post/v1";
 
 const postRouter = async (app: FastifyInstance) => {
   const { getAllPosts, getPostByPostId } = postController;
 
-  app.get(
-    "/",
-    {
-      schema: {
-        description: "posts end points",
-        tags: ["posts"],
-      },
-    },
-    getAllPosts
-  );
-  app.get(
-    "/:id",
-    {
-      schema: {
-        description: "posts end points",
-        tags: ["posts"],
-      },
-    },
-    getPostByPostId
-  );
+  app.get("/", schemaPostV1.getAllPosts, getAllPosts);
+  app.get("/:id", schemaPostV1.getPostByPostId, getPostByPostId);
 };
 
 export default postRouter;
