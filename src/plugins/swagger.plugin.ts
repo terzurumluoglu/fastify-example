@@ -1,10 +1,17 @@
-import { type FastifyInstance } from "fastify";
+import {
+  type FastifyReply,
+  type FastifyRequest,
+  type FastifyInstance,
+} from "fastify";
 import fastifyAutoload from "@fastify/autoload";
 import fp from "fastify-plugin";
 import { join } from "path";
 import { getGeneratedOptions } from "../constants";
+import { createReadStream } from "fs";
 
 export default fp((fastifyInstance: FastifyInstance) => {
+  addRootRoute(fastifyInstance);
+
   getGeneratedOptions().forEach((option) => {
     const {
       fastifySwagger,
@@ -25,3 +32,19 @@ export default fp((fastifyInstance: FastifyInstance) => {
     });
   });
 });
+
+const addRootRoute = (fastifyInstance: FastifyInstance) => {
+  fastifyInstance.register((fastify) => {
+    fastify.get("/", (_: FastifyRequest, reply: FastifyReply) => {
+      try {
+        const path = join(__dirname, "..", "public", "index.html");
+        const stream = createReadStream(path);
+        reply.type("text/html").send(stream);
+      } catch (error) {
+        reply.code(200).send({
+          message: "Fastify Api is Running...",
+        });
+      }
+    });
+  });
+};
