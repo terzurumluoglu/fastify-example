@@ -32,11 +32,10 @@ const SWAGGER_INFO = {
 
 const SWAGGER_OPTIONS = {
   // info: SWAGGER_INFO,
-  host: "localhost",
+  host: "localhost:3000",
   schemes: ["http"],
   consumes: ["application/json"],
   produces: ["application/json"],
-  basePath: "{{VERSION}}",
   tags: [] as { name: string; description: string }[],
 };
 
@@ -92,7 +91,6 @@ const generateOptions = (
     const swaggerOptions: SwaggerOptions = {
       swagger: {
         ...SWAGGER_OPTIONS,
-        basePath: version,
         info,
         tags,
       },
