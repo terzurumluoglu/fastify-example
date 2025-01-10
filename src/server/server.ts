@@ -1,5 +1,7 @@
 import { fastify, type FastifyInstance } from "fastify";
 import { options } from "@constants";
+import { initialEnvironment } from "helpers";
+import { EnvConfig } from "@types";
 
 export class Server {
   #server: FastifyInstance = fastify(options);
@@ -19,9 +21,13 @@ export class Server {
 
   #listen = async () => {
     try {
-      await this.#server.listen({ port: 3000 });
-      console.log("Server started successfully");
+      await initialEnvironment(this.#server);
+      const { MESSAGE, PORT: port } = this.#server.config as EnvConfig;
+      await this.#server.listen({ port });
+      const message: string = MESSAGE.split("{{PORT}}").join(port + "");
+      console.log(message);
     } catch (err) {
+      this.#server.log.error(err);
       process.exit(1);
     }
   };
