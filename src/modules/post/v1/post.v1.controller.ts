@@ -12,7 +12,7 @@ const getPostsByUserId = async (
   reply: FastifyReply
 ) => {
   const { id } = req.params;
-  reply.code(200).send(postService.getPostsByUserId(id));
+  reply.code(200).send(await postService.getPostsByUserId(id));
 };
 
 const getPostByPostId = async (req: RequestWithUserId, reply: FastifyReply) => {
