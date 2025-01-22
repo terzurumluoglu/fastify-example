@@ -1,21 +1,18 @@
 import { type FastifyReply, type FastifyRequest } from "fastify";
 import { postService } from "./post.v1.service";
-import { type Post, type RequestWithUserId } from "@types";
+import { type Post, type RequestWithId } from "@types";
 import { ErrorResponse } from "utils";
 
 const getAllPosts = async (_: FastifyRequest, reply: FastifyReply) => {
-  reply.code(200).send(postService.getAllPosts());
+  reply.code(200).send(await postService.getAllPosts());
 };
 
-const getPostsByUserId = async (
-  req: RequestWithUserId,
-  reply: FastifyReply
-) => {
+const getPostsByUserId = async (req: RequestWithId, reply: FastifyReply) => {
   const { id } = req.params;
   reply.code(200).send(await postService.getPostsByUserId(id));
 };
 
-const getPostByPostId = async (req: RequestWithUserId, reply: FastifyReply) => {
+const getPostByPostId = async (req: RequestWithId, reply: FastifyReply) => {
   const { id } = req.params;
 
   const post: Post | undefined = await postService.getPostByPostId(id);
