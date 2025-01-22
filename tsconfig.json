@@ -107,6 +107,9 @@
       "@mock": [
         "mock"
       ],
+      "@models": [
+        "models"
+      ],
       "@modules/post/v1": [
         "modules/post/v1",
       ],
