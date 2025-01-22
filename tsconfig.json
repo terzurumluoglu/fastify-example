@@ -110,6 +110,9 @@
       "@modules/post/v1": [
         "modules/post/v1",
       ],
+      "@modules/tag/v1": [
+        "modules/tag/v1",
+      ],
       "@modules/user/v1": [
         "modules/user/v1",
       ],

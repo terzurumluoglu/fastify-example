@@ -51,6 +51,10 @@ const DOC_VERSIONS = [
         name: "posts",
         description: "The end points are related with POST",
       },
+      {
+        name: "tags",
+        description: "The end points are related with TAG",
+      },
     ],
   },
   {
