@@ -3,6 +3,7 @@ import {
   type FastifyReply,
   type FastifyRequest,
 } from "fastify";
+import { IErrorResponse } from "@models";
 import { ErrorResponse } from "utils";
 
 export const errorHandler: FastifyInstance["errorHandler"] = (
@@ -11,18 +12,23 @@ export const errorHandler: FastifyInstance["errorHandler"] = (
   reply: FastifyReply
 ) => {
   if (error instanceof ErrorResponse) {
-    return reply.status(error.statusCode).send({
+    const errorResponse: IErrorResponse = {
+      success: false,
       error: error.name,
-      message: error.message,
-    });
+      details: error.message,
+      code: error.statusCode,
+    };
+    return reply.code(errorResponse.code).send(errorResponse);
   }
 
   if (error.validation) {
-    return reply.status(400).send({
-      error: "Validation Error",
-      message: error.message,
+    const errorResponse: IErrorResponse = {
+      success: false,
+      error: error.message,
       details: error.validation,
-    });
+      code: 400,
+    };
+    return reply.code(400).send(errorResponse);
   }
 
   if (error.code === 11000) {
@@ -30,8 +36,11 @@ export const errorHandler: FastifyInstance["errorHandler"] = (
     error = new ErrorResponse(message, 400);
   }
 
-  return reply.code(error.statusCode || 500).send({
+  const errorResponse: IErrorResponse = {
     success: false,
     error: error.message || "Server Error",
-  });
+    details: error.message || "Server Error",
+    code: error.statusCode || 500,
+  };
+  return reply.code(errorResponse.code).send(errorResponse);
 };
