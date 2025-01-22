@@ -2,14 +2,26 @@ import { type FastifyReply, type FastifyRequest } from "fastify";
 import { postService } from "./post.v1.service";
 import { type Post, type RequestWithId } from "@types";
 import { ErrorResponse } from "utils";
+import { ISuccessResponse } from "@models";
 
 const getAllPosts = async (_: FastifyRequest, reply: FastifyReply) => {
-  reply.code(200).send(await postService.getAllPosts());
+  const response: ISuccessResponse<Post[]> = {
+    success: true,
+    code: 200,
+    result: await postService.getAllPosts(),
+  };
+  reply.code(response.code).send(response);
 };
 
 const getPostsByUserId = async (req: RequestWithId, reply: FastifyReply) => {
   const { id } = req.params;
-  reply.code(200).send(await postService.getPostsByUserId(id));
+
+  const response: ISuccessResponse<Post[]> = {
+    success: true,
+    code: 200,
+    result: await postService.getPostsByUserId(id),
+  };
+  reply.code(response.code).send(response);
 };
 
 const getPostByPostId = async (req: RequestWithId, reply: FastifyReply) => {
@@ -20,7 +32,13 @@ const getPostByPostId = async (req: RequestWithId, reply: FastifyReply) => {
   if (!post) {
     throw new ErrorResponse(`Any Post Found With id: ${id}`, 404);
   }
-  reply.code(200).send(post);
+
+  const response: ISuccessResponse<Post> = {
+    success: true,
+    code: 200,
+    result: post,
+  };
+  reply.code(response.code).send(response);
 };
 
 export const postController = {

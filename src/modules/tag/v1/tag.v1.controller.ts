@@ -1,17 +1,20 @@
 import { type FastifyReply } from "fastify";
 import { tagService } from "./tag.v1.service";
-import { tagServiceCommon } from "../common/tag.common.service";
-import { type RequestWithTags, type RequestWithId } from "@types";
-
-const getAllTags = async (req: RequestWithId, reply: FastifyReply) => {
-  reply.code(200).send(await tagServiceCommon.getAllTags());
-};
+import { type Post, type RequestWithTags } from "@types";
+import { type ISuccessResponse } from "@models";
+import { getAllTags } from "../common/tag.common.controller";
 
 const getPostsByTags = async (req: RequestWithTags, reply: FastifyReply) => {
   const { tags } = req.params;
   const tagKeys: string[] = tags.split(",");
   const posts = await tagService.getPostsByTags(tagKeys);
-  reply.code(200).send(posts);
+
+  const response: ISuccessResponse<Post[]> = {
+    success: true,
+    code: 200,
+    result: posts,
+  };
+  reply.code(response.code).send(response);
 };
 
 export const tagController = {
