@@ -14,8 +14,8 @@ const getPostByPostId = async (postId: number) => {
 
 const getPostsBySearchText = async (text: string) => {
   const result: Post[] = POSTS.filter((post) =>
-    [post.title, post.body].some((context) =>
-      context.toLowerCase().includes(text.toLowerCase())
+    [post.title, post.body, post.tags.map((a) => a.value).join()].some(
+      (context) => context.toLowerCase().includes(text.toLowerCase())
     )
   );
   return result;
