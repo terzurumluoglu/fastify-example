@@ -6,7 +6,7 @@ const postRouter = async (app: FastifyInstance) => {
 
   app.get("/", schemaPostV1.getAllPosts, getAllPosts);
   app.get("/:id", schemaPostV1.getPostByPostId, getPostByPostId);
-  app.get("/search", schemaPostV1.getPostBySearchText, getPostsBySearchText);
+  app.get("/search", schemaPostV1.getPostsBySearchText, getPostsBySearchText);
 };
 
 export default postRouter;

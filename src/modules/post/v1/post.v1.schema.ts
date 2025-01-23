@@ -15,7 +15,7 @@ const getPostByPostId = {
   },
 };
 
-const getPostBySearchText = {
+const getPostsBySearchText = {
   schema: {
     description: "Get Posts Array by Search Text",
     tags: ["posts"],
@@ -34,5 +34,5 @@ const getPostBySearchText = {
 export const schemaPostV1 = {
   getAllPosts,
   getPostByPostId,
-  getPostBySearchText,
+  getPostsBySearchText,
 };
