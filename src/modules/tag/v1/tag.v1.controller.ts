@@ -1,13 +1,15 @@
 import { type FastifyReply } from "fastify";
 import { tagService } from "./tag.v1.service";
-import { type Post, type RequestWithTags } from "@types";
+import { type RequestBodyWithTags, type Post } from "@types";
 import { type ISuccessResponse } from "@models";
-import { getAllTags } from "../common/tag.common.controller";
+import { getAllTags, getTagsByTagKeys } from "../common/tag.common.controller";
 
-const getPostsByTags = async (req: RequestWithTags, reply: FastifyReply) => {
-  const { tags } = req.params;
-  const tagKeys: string[] = tags.split(",");
-  const posts = await tagService.getPostsByTags(tagKeys);
+const getPostsByTags = async (
+  req: RequestBodyWithTags,
+  reply: FastifyReply
+) => {
+  const { tags } = req.body;
+  const posts = await tagService.getPostsByTags(tags);
 
   const response: ISuccessResponse<Post[]> = {
     success: true,
@@ -19,5 +21,6 @@ const getPostsByTags = async (req: RequestWithTags, reply: FastifyReply) => {
 
 export const tagController = {
   getAllTags,
+  getTagsByTagKeys,
   getPostsByTags,
 };

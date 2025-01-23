@@ -1,10 +1,10 @@
-import { getAllTags } from "../common/tag.common.schema";
+import { getAllTags, getTagsByKeys } from "../common/tag.common.schema";
 
 const getPostsByTags = {
   schema: {
     description: "Get Posts by Tags",
     tags: ["tags"],
-    params: {
+    body: {
       type: "object",
       properties: {
         tags: {
@@ -18,5 +18,6 @@ const getPostsByTags = {
 
 export const schemaTagV1 = {
   getAllTags,
+  getTagsByKeys,
   getPostsByTags,
 };
