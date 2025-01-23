@@ -10,3 +10,7 @@ export type RequestParamsWithTags = FastifyRequest<{
 export type RequestBodyWithTags = FastifyRequest<{
   Body: { tags: string };
 }>;
+
+export type RequestQuerystringWithText = FastifyRequest<{
+  Querystring: { text: string };
+}>;

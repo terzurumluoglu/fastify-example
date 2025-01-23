@@ -15,7 +15,24 @@ const getPostByPostId = {
   },
 };
 
+const getPostBySearchText = {
+  schema: {
+    description: "Get Posts Array by Search Text",
+    tags: ["posts"],
+    querystring: {
+      type: "object",
+      properties: {
+        text: {
+          type: "string",
+        },
+      },
+      required: ["text"],
+    },
+  },
+};
+
 export const schemaPostV1 = {
   getAllPosts,
   getPostByPostId,
+  getPostBySearchText,
 };

@@ -12,8 +12,16 @@ const getPostByPostId = async (postId: number) => {
   return result;
 };
 
+const getPostsBySearchText = async (text: string) => {
+  const result: Post[] = POSTS.filter((post) =>
+    [post.title, post.body].some((context) => context.includes(text))
+  );
+  return result;
+};
+
 export const postService = {
   getAllPosts,
   getPostByPostId,
+  getPostsBySearchText,
   getPostsByUserId,
 };
