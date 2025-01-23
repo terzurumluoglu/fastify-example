@@ -1,6 +1,6 @@
 import { type FastifyReply, type FastifyRequest } from "fastify";
 import { postService } from "./post.v1.service";
-import { type Post, type RequestWithId } from "@types";
+import { type Post, type RequestParamsWithId } from "@types";
 import { ErrorResponse } from "utils";
 import { ISuccessResponse } from "@models";
 
@@ -13,7 +13,10 @@ const getAllPosts = async (_: FastifyRequest, reply: FastifyReply) => {
   reply.code(response.code).send(response);
 };
 
-const getPostsByUserId = async (req: RequestWithId, reply: FastifyReply) => {
+const getPostsByUserId = async (
+  req: RequestParamsWithId,
+  reply: FastifyReply
+) => {
   const { id } = req.params;
 
   const response: ISuccessResponse<Post[]> = {
@@ -24,7 +27,10 @@ const getPostsByUserId = async (req: RequestWithId, reply: FastifyReply) => {
   reply.code(response.code).send(response);
 };
 
-const getPostByPostId = async (req: RequestWithId, reply: FastifyReply) => {
+const getPostByPostId = async (
+  req: RequestParamsWithId,
+  reply: FastifyReply
+) => {
   const { id } = req.params;
 
   const post: Post | undefined = await postService.getPostByPostId(id);

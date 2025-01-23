@@ -1,11 +1,14 @@
 import { userService } from "./user.v1.service";
 import { getAllUsers } from "../common/user.common.controller";
-import { type User, type RequestWithId } from "@types";
+import { type User, type RequestParamsWithId } from "@types";
 import { type FastifyReply } from "fastify";
 import { ErrorResponse } from "utils";
 import { ISuccessResponse } from "@models";
 
-const getUserByUserId = async (req: RequestWithId, reply: FastifyReply) => {
+const getUserByUserId = async (
+  req: RequestParamsWithId,
+  reply: FastifyReply
+) => {
   const { id } = req.params;
   const user: User | undefined = await userService.getUserByUserId(id);
 

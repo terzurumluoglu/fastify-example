@@ -1,8 +1,12 @@
 import { FastifyRequest } from "fastify";
-export type RequestWithId = FastifyRequest<{
+export type RequestParamsWithId = FastifyRequest<{
   Params: { id: number };
 }>;
 
-export type RequestWithTags = FastifyRequest<{
+export type RequestParamsWithTags = FastifyRequest<{
   Params: { tags: string };
+}>;
+
+export type RequestBodyWithTags = FastifyRequest<{
+  Body: { tags: string };
 }>;
