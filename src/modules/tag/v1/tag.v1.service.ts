@@ -1,4 +1,4 @@
-import { POSTS } from "@mock";
+import { POSTS, TAGS } from "@mock";
 
 const getPostsByTags = (tags: string) => {
   const tagKeys: string[] = tags.split(",");
@@ -7,6 +7,15 @@ const getPostsByTags = (tags: string) => {
   );
 };
 
+const getTagsBySearchText = (text: string) => {
+  return TAGS.filter(
+    (tag) =>
+      tag.value.toLowerCase().includes(text.toLowerCase()) ||
+      text.toLowerCase().includes(tag.value.toLowerCase())
+  );
+};
+
 export const tagService = {
   getPostsByTags,
+  getTagsBySearchText,
 };

@@ -16,8 +16,25 @@ const getPostsByTags = {
   },
 };
 
+const getTagsBySearchText = {
+  schema: {
+    description: "Get Tags Array by Search Text",
+    tags: ["tags"],
+    querystring: {
+      type: "object",
+      properties: {
+        text: {
+          type: "string",
+        },
+      },
+      required: ["text"],
+    },
+  },
+};
+
 export const schemaTagV1 = {
   getAllTags,
   getTagsByKeys,
+  getTagsBySearchText,
   getPostsByTags,
 };
